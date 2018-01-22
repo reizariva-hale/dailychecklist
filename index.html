@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Daily tasks checklist</title>
+</head>
+<body>
+  <style>
+    html {
+      font-family: Gill Sans;
+      background: #ffffff;;
+    }
+    .inbox {
+      max-width:600px;
+      margin:50px auto;
+      background:white;
+      border-radius:5px;
+      box-shadow:10px 10px 0 rgba(0,0,0,0.1);
+    }
+    .item {
+      display:flex;
+      align-items:center;
+      border-bottom: 1px solid #F1F1F1;
+    }
+    .item:last-child {
+      border-bottom:0;
+    }
+    input:checked + p {
+      background:#F9F9F9;
+      text-decoration: line-through;
+    }
+    input[type="checkbox"] {
+      margin:20px;
+    }
+    h1 {
+      margin:0;
+      padding:20px;
+      transition:background 0.2s;
+      flex:1;
+      font-family:'Gill Sans';
+      font-size: 38px;
+      font-weight: 200;
+      border-left: 1px solid #D1E2FF;
+      text-align: center;
+    }
+    p {
+      margin:0;
+      padding:20px;
+      transition:background 0.2s;
+      flex:1;
+      font-family:'Gill Sans';
+      font-size: 20px;
+      font-weight: 200;
+      border-left: 1px solid #D1E2FF;
+    }
+  </style>
+  <!-- this exercise was part of Wes Bos' JavaScript 30 course -->
+   <h1>Monday to Friday</h1>
+  <div class="inbox">
+    <div class="item">
+      <input type="checkbox">
+      <p>An hour of JavaScript (morning)</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Morning workout</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Play with Nicole (before work)</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Breakfast</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Check emails</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Deep work (2 hours)</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Lunch</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Drink water (15 cups)</p>
+    </div>
+    <div class="item">
+        <input type="checkbox">
+        <p>An hour of JavaScript (afternoon)</p>
+      </div>
+      <div class="item">
+        <input type="checkbox">
+        <p>Play with Nicole (after work)</p>
+      </div>
+      <div class="item">
+        <input type="checkbox">
+        <p>Dinner</p>
+      </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>A quality time with wifey</p>
+    </div>
+    <div class="item">
+        <input type="checkbox">
+        <p>An hour of JavaScript (evening)</p>
+      </div>
+  </div>
+  
+
+<script>
+const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+let lastChecked;
+function handleCheck(e) {
+  // Check if they had the shift key down
+  // AND check that they are checking it
+  let inBetween = false;
+  if (e.shiftKey && this.checked) {
+    // go ahead and do what we please
+    // loop over every single checkbox
+    checkboxes.forEach(checkbox => {
+      console.log(checkbox);
+      if (checkbox === this || checkbox === lastChecked) {
+        inBetween = !inBetween;
+        console.log('Starting to check them inbetween!');
+      }
+      if (inBetween) {
+        checkbox.checked = true;
+      }
+    });
+  }
+  lastChecked = this;
+}
+checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+</script>
+</body>
+</html>
